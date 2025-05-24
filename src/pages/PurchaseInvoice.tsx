@@ -32,7 +32,7 @@ const PurchaseInvoice = () => {
     brand: '',
     vendor: '',
     billType: '',
-    billAmount: 0,
+    invoiceAmount: 0,
     totalVAT: 0,
     totalDiscount: 0,
     paymentMethod: '',
@@ -43,7 +43,7 @@ const PurchaseInvoice = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   // Calculate derived values based on bill type
-  const totalTP = formData.billAmount - formData.totalVAT;
+  const totalTP = formData.invoiceAmount - formData.totalVAT;
   const totalTAX = totalTP * 0.05;
   const payableToVendor = (totalTP - totalTAX) - formData.totalDiscount;
   const totalTDSVDS = formData.totalVAT + totalTAX;
@@ -167,11 +167,11 @@ const PurchaseInvoice = () => {
               <div className="space-y-4 border-t pt-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="billAmount">Bill Amount</Label>
+                    <Label htmlFor="invoiceAmount">Bill Amount</Label>
                     <Input
                       type="number"
-                      value={formData.billAmount}
-                      onChange={(e) => handleInputChange('billAmount', parseFloat(e.target.value) || 0)}
+                      value={formData.invoiceAmount}
+                      onChange={(e) => handleInputChange('invoiceAmount', parseFloat(e.target.value) || 0)}
                       placeholder="Enter bill amount"
                     />
                   </div>
