@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -6,10 +5,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus } from 'lucide-react';
 import ProductEntry from '@/components/ProductEntry';
 import ProductSummaryTable from '@/components/ProductSummaryTable';
 import PurchaseSummary from '@/components/PurchaseSummary';
+import { Plus } from 'lucide-react';
 
 interface Product {
   id: string;
@@ -42,7 +41,6 @@ const PurchaseInvoice = () => {
   });
 
   const [products, setProducts] = useState<Product[]>([]);
-  const [showProductEntry, setShowProductEntry] = useState(false);
 
   // Calculate derived values based on bill type
   const totalTP = formData.billAmount - formData.totalVAT;
@@ -77,7 +75,6 @@ const PurchaseInvoice = () => {
     }));
 
     setProducts([...updatedProducts, newProduct]);
-    setShowProductEntry(false);
   };
 
   return (
@@ -295,19 +292,13 @@ const PurchaseInvoice = () => {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   Product Entry
-                  <Button onClick={() => setShowProductEntry(true)} className="flex items-center gap-2">
-                    <Plus size={16} />
-                    Add Product
-                  </Button>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                {showProductEntry && (
-                  <ProductEntry
-                    onAdd={addProduct}
-                    onCancel={() => setShowProductEntry(false)}
-                  />
-                )}
+                <ProductEntry
+                  onAdd={addProduct}
+                  onCancel={() => {}}
+                />
               </CardContent>
             </Card>
 

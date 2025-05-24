@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -21,7 +20,7 @@ interface ProductEntryProps {
 }
 
 const ProductEntry: React.FC<ProductEntryProps> = ({ onAdd, onCancel }) => {
-  const [productData, setProductData] = useState({
+  const initialProductData = {
     product: '',
     variant: '',
     qty: 0,
@@ -32,7 +31,9 @@ const ProductEntry: React.FC<ProductEntryProps> = ({ onAdd, onCancel }) => {
     endYear: '',
     multiplier: '1',
     batch: 'AUTO-BATCH-001'
-  });
+  };
+
+  const [productData, setProductData] = useState(initialProductData);
 
   const tpPrice = productData.qty * productData.unitPrice;
   const tax = tpPrice * 0.05;
@@ -62,18 +63,7 @@ const ProductEntry: React.FC<ProductEntryProps> = ({ onAdd, onCancel }) => {
     });
 
     // Reset form
-    setProductData({
-      product: '',
-      variant: '',
-      qty: 0,
-      unit: '',
-      unitPrice: 0,
-      vat: 0,
-      endMonth: '',
-      endYear: '',
-      multiplier: '1',
-      batch: 'AUTO-BATCH-001'
-    });
+    setProductData(initialProductData);
   };
 
   const getProductStrength = (productName: string) => {
@@ -226,9 +216,6 @@ const ProductEntry: React.FC<ProductEntryProps> = ({ onAdd, onCancel }) => {
         <div className="flex gap-2">
           <Button onClick={handleAdd} className="bg-green-600 hover:bg-green-700">
             Add Product
-          </Button>
-          <Button onClick={onCancel} variant="outline">
-            Cancel
           </Button>
         </div>
       </CardContent>

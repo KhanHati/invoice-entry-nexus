@@ -89,7 +89,7 @@ const PurchaseSummary: React.FC<PurchaseSummaryProps> = ({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Purchase Summary & Validation</CardTitle>
+        <CardTitle>Summary</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -100,54 +100,56 @@ const PurchaseSummary: React.FC<PurchaseSummaryProps> = ({
                 <span>Bill Amount:</span>
                 <span className="font-medium">{formData.billAmount.toFixed(2)}</span>
               </div>
+              <div className="flex justify-between p-2 bg-gray-50 rounded">
+                <span>Total VAT:</span>
+                <span className="font-medium">{formData.totalVAT.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between p-2 bg-gray-50 rounded">
+                <span>Total TAX:</span>
+                <span className="font-medium">{calculatedValues.totalTAX.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between p-2 bg-gray-50 rounded">
+                <span>Total Discount:</span>
+                <span className="font-medium">{formData.totalDiscount.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between p-2 bg-gray-50 rounded">
+                <span>Payable to Vendor:</span>
+                <span className="font-medium">{calculatedValues.payableToVendor.toFixed(2)}</span>
+              </div>
             </div>
           </div>
           
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold">Calculated Values</h3>
+            <h3 className="text-lg font-semibold">Validation</h3>
             <div className="space-y-2">
-              <div className="flex justify-between p-2 bg-gray-50 rounded">
-                <span>Total TP:</span>
-                <span className="font-medium">{calculatedValues.totalTP.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between p-2 bg-gray-50 rounded">
-                <span>Total TDS & VDS:</span>
-                <span className="font-medium">{calculatedValues.totalTDSVDS.toFixed(2)}</span>
-              </div>
+              <ValidationRow
+                label="Total VAT"
+                inputValue={formData.totalVAT}
+                tableValue={tableVATTotal}
+                matches={vatMatches}
+              />
+              
+              <ValidationRow
+                label="Total TAX"
+                inputValue={calculatedValues.totalTAX}
+                tableValue={tableTAXTotal}
+                matches={taxMatches}
+              />
+              
+              <ValidationRow
+                label="Total Discount"
+                inputValue={formData.totalDiscount}
+                tableValue={tableDiscountTotal}
+                matches={discountMatches}
+              />
+              
+              <ValidationRow
+                label="Payable to Vendor"
+                inputValue={calculatedValues.payableToVendor}
+                tableValue={tablePayableTotal}
+                matches={payableMatches}
+              />
             </div>
-          </div>
-        </div>
-
-        <div className="border-t pt-4">
-          <h3 className="text-lg font-semibold mb-4">Validation Results</h3>
-          <div className="space-y-3">
-            <ValidationRow
-              label="Total VAT"
-              inputValue={formData.totalVAT}
-              tableValue={tableVATTotal}
-              matches={vatMatches}
-            />
-            
-            <ValidationRow
-              label="Total TAX"
-              inputValue={calculatedValues.totalTAX}
-              tableValue={tableTAXTotal}
-              matches={taxMatches}
-            />
-            
-            <ValidationRow
-              label="Total Discount"
-              inputValue={formData.totalDiscount}
-              tableValue={tableDiscountTotal}
-              matches={discountMatches}
-            />
-            
-            <ValidationRow
-              label="Payable to Vendor"
-              inputValue={calculatedValues.payableToVendor}
-              tableValue={tablePayableTotal}
-              matches={payableMatches}
-            />
           </div>
         </div>
 
