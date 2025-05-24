@@ -21,7 +21,7 @@ interface Product {
 
 interface PurchaseSummaryProps {
   formData: {
-    billAmount: number;
+    invoiceAmount: number;
     totalVAT: number;
     totalDiscount: number;
   };
@@ -94,11 +94,10 @@ const PurchaseSummary: React.FC<PurchaseSummaryProps> = ({
       <CardContent className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold">Input Values</h3>
             <div className="space-y-2">
               <div className="flex justify-between p-2 bg-gray-50 rounded">
                 <span>Bill Amount:</span>
-                <span className="font-medium">{formData.billAmount.toFixed(2)}</span>
+                <span className="font-medium">{formData.invoiceAmount.toFixed(2)}</span>
               </div>
               <div className="flex justify-between p-2 bg-gray-50 rounded">
                 <span>Total VAT:</span>
@@ -120,7 +119,6 @@ const PurchaseSummary: React.FC<PurchaseSummaryProps> = ({
           </div>
           
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold">Validation</h3>
             <div className="space-y-2">
               <ValidationRow
                 label="Total VAT"

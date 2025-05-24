@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -8,7 +9,6 @@ import { Textarea } from '@/components/ui/textarea';
 import ProductEntry from '@/components/ProductEntry';
 import ProductSummaryTable from '@/components/ProductSummaryTable';
 import PurchaseSummary from '@/components/PurchaseSummary';
-import { Plus } from 'lucide-react';
 
 interface Product {
   id: string;
@@ -285,20 +285,15 @@ const PurchaseInvoice = () => {
           </CardContent>
         </Card>
 
-        {/* Product Entry Section */}
+        {/* Product Entry Section - Always visible when bill type is selected */}
         {formData.billType === 'including-tax-vat' && (
           <>
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  Product Entry
-                </CardTitle>
+                <CardTitle>Product Entry</CardTitle>
               </CardHeader>
               <CardContent>
-                <ProductEntry
-                  onAdd={addProduct}
-                  onCancel={() => {}}
-                />
+                <ProductEntry onAdd={addProduct} />
               </CardContent>
             </Card>
 

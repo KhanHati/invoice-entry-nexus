@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -16,10 +17,9 @@ interface ProductEntryProps {
     vat: number;
     tax: number;
   }) => void;
-  onCancel: () => void;
 }
 
-const ProductEntry: React.FC<ProductEntryProps> = ({ onAdd, onCancel }) => {
+const ProductEntry: React.FC<ProductEntryProps> = ({ onAdd }) => {
   const initialProductData = {
     product: '',
     variant: '',
@@ -62,7 +62,7 @@ const ProductEntry: React.FC<ProductEntryProps> = ({ onAdd, onCancel }) => {
       tax
     });
 
-    // Reset form
+    // Reset form after adding
     setProductData(initialProductData);
   };
 
