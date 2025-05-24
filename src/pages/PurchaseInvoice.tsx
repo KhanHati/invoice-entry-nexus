@@ -146,7 +146,7 @@ const PurchaseInvoice = () => {
                     <SelectItem value="including-tax-vat">Including Tax & VAT</SelectItem>
                     <SelectItem value="excluding-tax-vat">Excluding Tax & VAT</SelectItem>
                     <SelectItem value="including-tax-excluding-vat">Including Tax & Excluding VAT</SelectItem>
-                    <SelectItem value="excluding-tax-including-vat">Excluding Tax & Including VAT</SelectItem>
+                    <SelectItem value="excluding-tax-including-vat">Invoice Amount</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -156,7 +156,7 @@ const PurchaseInvoice = () => {
             {formData.billType === 'including-tax-vat' && <div className="space-y-4 border-t pt-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="invoiceAmount">InvoiceAmount</Label>
+                    <Label htmlFor="invoiceAmount">Invoice Amount</Label>
                     <Input type="number" value={formData.invoiceAmount} onChange={e => handleInputChange('invoiceAmount', parseFloat(e.target.value) || 0)} placeholder="Enter bill amount" />
                   </div>
 
